@@ -18,7 +18,7 @@
   <dependencies>
   
   	<dependency>
-      <groupId>test</groupId>
+      <groupId>com.test</groupId>
 	  <artifactId>OrderDB</artifactId>
 	  <version>0.0.1-SNAPSHOT</version>
     </dependency>
