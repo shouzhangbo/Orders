@@ -1,0 +1,12 @@
+.settings/*
+.project
+target/*
+.classpath
+CreateOrder/target/*
+CreateOrder/.settings/*
+OptOrder/.settings/*
+OptOrder/target/*
+OrderDB/target/*
+OrderDB/.settings/
+QueryOrder/.settings/*
+QueryOrder/target/*
