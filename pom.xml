@@ -10,6 +10,7 @@
     <module>CreateOrder</module>
     <module>QueryOrder</module>
     <module>OptOrder</module>
+    <module>h5</module>
   </modules>
   
    <properties>

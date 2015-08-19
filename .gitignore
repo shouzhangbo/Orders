@@ -10,3 +10,5 @@ OrderDB/target/*
 OrderDB/.settings/
 QueryOrder/.settings/*
 QueryOrder/target/*
+h5/.settings/*
+h5/target/*
