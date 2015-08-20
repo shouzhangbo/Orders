@@ -19,8 +19,8 @@
 	用户名：<input type="text" name="userId" value=""  />
 	<input type="submit" class="" id="recharge" value="充值" /><br/>
 </form>
-	<form action="" method="">
-	<input type="text" name=""  id=""  /><input type="submit" value="查询历史订单" />
+	<form action="query.json" method="post">
+	<input type="text" name="mobile"  id=""  /><input type="submit" value="查询历史订单" />
 	</form>
 </body>
 </html>
