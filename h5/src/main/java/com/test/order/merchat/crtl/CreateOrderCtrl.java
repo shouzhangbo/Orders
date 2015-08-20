@@ -36,7 +36,7 @@ public class CreateOrderCtrl {
 		map.put("111", "1213");
 		return map;
 	}
-	@RequestMapping(value = "/h5/createOrder", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "createOrder", method = {RequestMethod.POST, RequestMethod.GET})
 	 public String get(HttpServletRequest request,HttpServletResponse response,Orders orderForm) {
 		System.out.println("1111");
 		if(!CommonUtil.isEmpty(orderForm.getAmount())
@@ -58,9 +58,9 @@ public class CreateOrderCtrl {
 		}else{
 			request.setAttribute("respMsg", "充值失败！");
 		}
-		 return "/h5/result";
+		 return "/order/result";
 	 }
-	@RequestMapping(value = "/h5/query", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "query", method = {RequestMethod.POST, RequestMethod.GET})
 	 public String query(HttpServletRequest request,HttpServletResponse response,Orders orderForm) {
 		List<Orders> list = new ArrayList<Orders>();
 		if(!CommonUtil.isEmpty(orderForm.getAmount())
@@ -93,7 +93,7 @@ public class CreateOrderCtrl {
 			}
 		}
 		request.setAttribute("list", list);
-		return "result2";
+		return "/order/result2";
 	}
 	
 	public static void main(String[] args) {
