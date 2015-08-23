@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +31,8 @@ public class CreateOrderCtrl {
 	private static String queryUrl = "http://localhost:8080/QueryOrder/queryOrder.json";
 	private static String encode = "UTF-8";
 	
+	private static final Logger log = LoggerFactory.getLogger(CreateOrderCtrl.class);
+	
 	@RequestMapping(value = "/test", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
 	 public Map<String,Object> tet(HttpServletRequest request,HttpServletResponse response,Orders orderForm) {
@@ -38,7 +42,6 @@ public class CreateOrderCtrl {
 	}
 	@RequestMapping(value = "createOrder", method = {RequestMethod.POST, RequestMethod.GET})
 	 public String get(HttpServletRequest request,HttpServletResponse response,Orders orderForm) {
-		System.out.println("1111");
 		if(!CommonUtil.isEmpty(orderForm.getAmount())
 				&&!CommonUtil.isEmpty(orderForm.getMobile())
 				&&!CommonUtil.isEmpty(orderForm.getUserId()))
@@ -48,7 +51,7 @@ public class CreateOrderCtrl {
 			paramsMap.put("amount", String.valueOf(orderForm.getAmount()));
 			paramsMap.put("userId", orderForm.getUserId());
 			String result = HttpUtil.doPost(url, paramsMap, encode);
-			System.out.println("充值结果："+result);
+			log.info("充值结果："+result);
 			JsonObject resultJson = JsonUtil.parseJson(result);
 			if("0000".equals(resultJson.get("respCode").getAsString())){
 				request.setAttribute("respMsg", "充值成功！");
@@ -72,7 +75,7 @@ public class CreateOrderCtrl {
 				Map<String,String> paramsMap = new HashMap<String,String>();
 				paramsMap.put("mobile", orderForm.getMobile());
 				String result = HttpUtil.doPost(url, paramsMap, encode);
-				System.out.println("查询结果："+result);
+				log.info("查询结果："+result);
 				JsonObject resultJson = JsonUtil.parseJson(result);
 				if("0000".equals(resultJson.get("respCode").getAsString())){
 					request.setAttribute("respMsg", "查询成功！");

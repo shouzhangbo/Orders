@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -25,13 +27,13 @@ import com.test.order.db.util.RedisQueueUtil;
 public class CreateOrderCtrl {
 	@Autowired
 	private OrderService orderServie;
-	
+	private static final Logger log = LoggerFactory.getLogger(CreateOrderCtrl.class);
 	
 	@RequestMapping(value = "/createOrder", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public Map<String,Object> createOrder(HttpServletRequest request,HttpServletResponse response,Orders orderForm)
 	{
-		System.out.println("手机号为："+orderForm.getMobile()+"充值"+orderForm.getAmount()+"元");
+		log.info("手机号为："+orderForm.getMobile()+"充值"+orderForm.getAmount()+"元");
 		Map<String,Object> map = new HashMap<String,Object>();
 		String respCode = "9000";
 		String respMsg = "失败";
@@ -47,7 +49,7 @@ public class CreateOrderCtrl {
 				orderServie.save(orderForm);
 				RedisQueueUtil queue = new RedisQueueUtil(GlobalContents.RedisQueue.create_queue);
 				queue.add(orderForm.getOrderNo());
-				System.out.println("手机号为："+orderForm.getMobile()+"充值成功");
+				log.info("手机号为："+orderForm.getMobile()+"充值成功");
 				respCode = "0000";
 				respMsg = "success";
 			}catch(Exception e){

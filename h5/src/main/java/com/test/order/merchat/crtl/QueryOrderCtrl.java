@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -23,11 +25,11 @@ import com.test.order.merchat.form.OrderForm;
 public class QueryOrderCtrl {
 	@Autowired
 	private OrderService orderService;
+	private static final Logger log = LoggerFactory.getLogger(QueryOrderCtrl.class);
 	
 	@RequestMapping(value = "queryOrder", method = {RequestMethod.POST, RequestMethod.GET})
 	 public String get(HttpServletRequest request,HttpServletResponse response,OrderForm orderForm)
 	{
-		System.out.println("queryOrder");
 		PageInfo page = new PageInfo();
 		if(CommonUtil.isEmpty(orderForm.getPageSize())){
 			page.setPageSize(10);
