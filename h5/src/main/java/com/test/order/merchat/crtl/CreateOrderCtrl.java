@@ -46,10 +46,13 @@ public class CreateOrderCtrl {
 				&&!CommonUtil.isEmpty(orderForm.getMobile())
 				&&!CommonUtil.isEmpty(orderForm.getUserId()))
 		{
+			log.info("进入了充值接口");
+			log.info("请求参数："+orderForm.getMobile()+","+orderForm.getAmount()+","+orderForm.getUserId());
 			Map<String,String> paramsMap = new HashMap<String,String>();
 			paramsMap.put("mobile", orderForm.getMobile());
 			paramsMap.put("amount", String.valueOf(orderForm.getAmount()));
 			paramsMap.put("userId", orderForm.getUserId());
+			log.info("请求平台的参数："+paramsMap);
 			String result = HttpUtil.doPost(url, paramsMap, encode);
 			log.info("充值结果："+result);
 			JsonObject resultJson = JsonUtil.parseJson(result);
