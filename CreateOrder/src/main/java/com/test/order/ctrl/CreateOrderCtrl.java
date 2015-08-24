@@ -60,4 +60,9 @@ public class CreateOrderCtrl {
 		map.put("respMsg", respMsg);
 		return map;
 	}
+	
+	public static void main(String[] args) {
+		log.info("2323");
+		
+	}
 }
